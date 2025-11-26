@@ -1,0 +1,116 @@
+/* Basic responsive styling */
+:root {
+  font-family: system-ui, Arial, sans-serif;
+  --accent: #e76f51;
+  --muted: #6b6b6b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: #222;
+  background: #fafafa;
+}
+
+.topbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:1rem;
+  background:#fff;
+  border-bottom:1px solid #eee;
+}
+
+.topbar h1 { margin:0; font-size:1.1rem; }
+
+.controls {
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+}
+
+.controls input {
+  padding:0.5rem;
+  border:1px solid #ddd;
+  border-radius:6px;
+  min-width:220px;
+}
+
+.controls button {
+  padding:0.5rem 0.8rem;
+  border: none;
+  background: var(--accent);
+  color: white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.container {
+  display:flex;
+  gap:1rem;
+  padding:1rem;
+}
+
+.sidebar {
+  width:220px;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:8px;
+  padding:0.75rem;
+  height:calc(100vh - 140px);
+  overflow:auto;
+}
+
+.content {
+  flex:1;
+}
+
+.categories { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.25rem; }
+.categories li { cursor:pointer; padding:0.4rem; border-radius:6px; }
+.categories li:hover { background:#f3f3f3; }
+
+.results {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap:1rem;
+}
+
+.card {
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid #eee;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+}
+
+.card img { width:100%; height:150px; object-fit:cover; display:block; }
+.card .meta { padding:0.5rem; }
+.card .meta h4 { margin:0 0 0.25rem 0; font-size:1rem; }
+.card .meta p { margin:0; color:var(--muted); font-size:0.9rem; }
+
+.details {
+  margin-top:1rem;
+  background:#fff;
+  border:1px solid #eee;
+  padding:1rem;
+  border-radius:8px;
+}
+
+.hidden { display:none; }
+
+.footer {
+  padding:0.6rem 1rem;
+  font-size:0.85rem;
+  color:var(--muted);
+  border-top:1px solid #eee;
+  background:#fff;
+}
+@media (max-width:800px) {
+  .container { flex-direction:column; }
+  .sidebar { width:100%; height:auto; order:2; }
+  .content { order:1; }
+}
