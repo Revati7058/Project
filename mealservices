@@ -1,0 +1,55 @@
+package com.example.themealdb.service;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+@Service
+public class MealService {
+
+    private final WebClient webClient;
+
+    @Value("${themealdb.base-url}")
+    private String baseUrl;
+
+    public MealService(WebClient.Builder builder) {
+        this.webClient = builder.build();
+    }
+
+    private Mono<String> fetch(String path) {
+        return webClient.get()
+                .uri(path)
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+
+    @Cacheable("search")
+    public Mono<String> searchByName(String name) {
+        String path = baseUrl + "/search.php?s=" + encode(name);
+        return fetch(path);
+    }
+
+    @Cacheable("categories")
+    public Mono<String> listCategories() {
+        String path = baseUrl + "/list.php?c=list";
+        return fetch(path);
+    }
+
+    @Cacheable("random")
+    public Mono<String> randomMeal() {
+        String path = baseUrl + "/random.php";
+        return fetch(path);
+    }
+
+    @Cacheable("lookup")
+    public Mono<String> lookupById(String id) {
+        String path = baseUrl + "/lookup.php?i=" + encode(id);
+        return fetch(path);
+    }
+
+    private String encode(String s) {
+        return s == null ? "" : java.net.URLEncoder.encode(s, java.nio.charset.StandardCharsets.UTF_8);
+    }
+}
