@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TheMealDB Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>TheMealDB Explorer</h1>
+    <div class="controls">
+      <input id="searchInput" type="search" placeholder="Search meals by name..." />
+      <button id="searchBtn">Search</button>
+      <button id="randomBtn">Random</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <ul id="categoriesList" class="categories"></ul>
+    </aside>
+
+    <section class="content">
+      <div id="results" class="results"></div>
+      <div id="details" class="details hidden"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Uses TheMealDB via your local Java backend. Assignment image: <code>/mnt/data/1000422484.jpg</code></small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
